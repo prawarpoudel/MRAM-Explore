@@ -35,6 +35,8 @@ But since we do not have control over current supply and application of voltage 
 
 ### Experiment 3.1
 
--> Single memory location of 1 byte is chosen.
--> Repeated programming 10K times
--> Read the memory location 20 times to see any inconsistency
+-> Single memory location of 1 byte is chosen.  
+-> Repeated programming 10K times  
+-> Read the memory location 20 times to see any inconsistency  
+
+With this experiment, the observation was not so good. This was because the device was robust. The output were as expected and not perturbed.
