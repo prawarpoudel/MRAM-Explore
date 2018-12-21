@@ -22,3 +22,19 @@ Following image shows the output printed in serial terminal when the operation i
 We will continue with the same experimental code to explore the stability of the MRAM chip. Our goal is to induce perturbation in the memory cells. There have been previous experiments where researchers have controlled voltage pulses for inducing perturbation in MRAM memory cells [link](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=7047039&tag=1). We cannot go beyond the interfacing layer that is accessible to us, and we are in no way trying to go to physical layer, so the approach here would be to lower the voltage supply to our setup using an external DC Power Supply.  
 
 ![Power Supply](images/image5_Voltagegen.jpg)
+
+Doing this experiment, I blew up a MRAM chip. Will it might be the embedded controller that was enfused with the MARM is busted rather than the MRAM component itself. But we do not have control over them. The procedure that I followed was to provide power through external power supply. The voltage (Vcc and Gnd on MRAM chip) was 3.3v. The program ran fine using the test from First Experiment. Lowering the voltage below 3.3V to 1.5V and the chip stopped working.
+
+## Third Experiment
+
+Although most of the experiments done on MRAM is on physical level where either differene in time it takes to switch from Parallel to Antiparallel or vice versa is measured for entropy, we cannot have access to that level in device as we will be interested not in physical level, but to utilize the available devices for creating security primitives. 
+
+The error present in STT devices are 1) Read Failure 2) Write Failure 3) Retention Failure. Of the three, **Read failure** is because of two reasons: a) the first reason is if there is time limitation for sensing current in read cycle such that enough bit line differential has been developed or because of the current read is opposite to what is expected. b) the second reason is if we write in course of reading from memory cell because of larger read current. **Write failure** is because of inability to write certain value to the memory because of lower current for the given transistor write time or because of higher current density (current per area). **Retention failure** is because of scaling down of memory structure and when thermal noise becomes more prominent.
+
+But since we do not have control over current supply and application of voltage below recommended seem to bust the controller, we tried stressing the MRAM chip that was available to us. This way we will bypass the chance of messing up the controller that interfaces the MRAM fabric, but if there is any stressing effect to be seen in MRAM, we will notice it. The motivation or argument behind pursuing this is that since it is magnetic device and the orientation of plates being parallel and antiparallel would affect the value read, we might just be able to introduce some agitation here because of repeated writing operation.
+
+### Experiment 3.1
+
+-> Single memory location of 1 byte is chosen.
+-> Repeated programming 10K times
+-> Read the memory location 20 times to see any inconsistency
